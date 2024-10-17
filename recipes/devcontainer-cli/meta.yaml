@@ -1,5 +1,5 @@
 {% set name = "devcontainer-cli" %}
-{% set version = "0.60.0" %}
+{% set version = "0.71.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,25 +7,25 @@ package:
 
 source:
   url: https://github.com/devcontainers/cli/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 98692295666c16ff964af45429c82b3ab7c6a72d6cef56a18c4ff05dc7492487
+  sha256: 34fade4c75d4081dd1c6edfeb2cea15c18ca551263162599689f06009f53b532
 
 build:
   number: 0
   noarch: generic
   script:
-    - tgz=$(npm pack)
-    - npm install -g $tgz
+    - yarn install
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - make
+    - yarn
   host:
     - nodejs >=20
   run:
     - nodejs >=20
-    - libstdcxx-ng  # [linux]
+    - {{ compiler('cxx') }}
 
 test:
   commands:
