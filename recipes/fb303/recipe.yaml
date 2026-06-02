@@ -1,0 +1,49 @@
+context:
+  version: "2026.06.01.00"
+
+package:
+  name: fb303
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebook/fb303/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 3e9e00b7fc5768571d8e426f57b911f62c5a65f4d6a969d1541c53632660b59b
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja 
+  host:
+    - gflags
+    - glog
+    - folly
+    - fmt
+    - fbthrift
+    - fizz
+    - wangle
+    - liblzma-devel
+  run:
+    - gflags
+    - glog
+    - folly
+    - fmt
+    - fbthrift
+    - fizz
+    - wangle
+
+about:
+  homepage: https://github.com/facebook/fb303
+  summary: 'fb303 is a core set of thrift functions that provide a common mechanism for querying stats and other information from a service.'
+  description: |
+    fb303 is a base Thrift service and a common set of functionality for querying stats, options, and other information from a service.
+  license: Apache-2.0
+  license_file: LICENSE
+  repository: https://github.com/facebook/fb303
+
+extra:
+  recipe-maintainers:
+    - freundTech

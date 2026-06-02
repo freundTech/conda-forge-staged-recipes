@@ -1,0 +1,64 @@
+context:
+  version: "2026.06.01.00"
+
+package:
+  name: fbthrift
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebook/fbthrift/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: ed4c648c181d9091506069e6d09338e1fcbc5387e906107219bea54954d3ead9
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja 
+  host:
+    - libboost-devel
+    - fmt
+    - openssl
+    - folly
+    - gflags
+    - glog
+    - fizz
+    - wangle
+    - zlib
+    - zstd
+    - xxhash
+    - mvfst
+    - python
+    - cython
+    - liblzma-devel
+  run:
+    - libboost
+    - fmt
+    - openssl
+    - folly
+    - gflags
+    - glog
+    - fizz
+    - wangle
+    - zlib
+    - zstd
+    - xxhash
+    - mvfst
+    - double-conversion
+
+about:
+  homepage: https://github.com/facebook/fbthrift
+  summary: "Facebook's branch of Apache Thrift, including a new C++ server."
+  description: |
+    Thrift is a serialization and RPC framework for service communication.
+    Thrift enables these features in all major languages, and there is strong support for C++, Python, Hack, and Java.
+    Most services at Facebook are written using Thrift for RPC, and some storage systems use Thrift for serializing records on disk.
+  license: Apache-2.0
+  license_file: LICENSE
+  repository: https://github.com/facebook/fbthrift
+
+extra:
+  recipe-maintainers:
+    - freundTech

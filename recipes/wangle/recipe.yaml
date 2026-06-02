@@ -1,0 +1,51 @@
+context:
+  version: "2026.06.01.00"
+
+package:
+  name: wangle
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebook/wangle/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 6bcb27e9f14dce4d1ea31f696bce9fab85850275fc7cc54ebe8636daab54b532
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja 
+  host:
+    - folly
+    - fizz
+    - fmt
+    - openssl
+    - gflags
+    - glog
+    - libevent
+    - double-conversion
+    - liblzma-devel
+  run:
+    - folly
+    - fizz
+    - fmt
+    - openssl
+    - gflags
+    - glog
+    - libevent
+    - double-conversion
+
+about:
+  homepage: https://github.com/facebookexperimental/edencommon
+  summary: 'C++ networking library'
+  description: |
+    Wangle is a framework providing a set of common client/server abstractions for building services in a consistent, modular, and composable way. 
+  license: Apache-2.0
+  license_file: LICENSE
+  repository: https://github.com/facebookexperimental/edencommon
+
+extra:
+  recipe-maintainers:
+    - freundTech

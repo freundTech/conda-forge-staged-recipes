@@ -1,0 +1,55 @@
+context:
+  version: "2026.06.01.00"
+
+package:
+  name: edencommon
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebookexperimental/edencommon/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 134373c391fc006edf729d57a39ff018c4e75653feef71314e82f6d4b6bf46da
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - cmake<4
+    - ninja 
+  host:
+    - glog
+    - gflags
+    - libboost-devel
+    - folly
+    - fb303
+    - wangle
+    - FBThrift
+    - gtest
+    - fmt
+    - liblzma-devel
+  run:
+    - glog
+    - gflags
+    - libboost
+    - folly
+    - fb303
+    - wangle
+    - FBThrift
+    - gtest
+    - fmt
+
+about:
+  homepage: https://github.com/facebookexperimental/edencommon
+  summary: 'Shared library for Watchman and Eden projects. '
+  description: |
+    This contains various utility libraries common between EdenFS and Watchman as well as utilities for clients of EdenFS or Watchman.
+
+    See https://github.com/facebook/sapling for more details on EdenFS and https://facebook.github.io/watchman/ for more details on Watchman.
+  license: MIT
+  license_file: LICENSE
+  repository: https://github.com/facebookexperimental/edencommon
+
+extra:
+  recipe-maintainers:
+    - freundTech

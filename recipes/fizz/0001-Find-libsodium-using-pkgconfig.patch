@@ -1,0 +1,26 @@
+From 8776af73ccedfbe4d260b719394c64c6fddfb4e7 Mon Sep 17 00:00:00 2001
+From: Adrian Freund <adrian@freund.io>
+Date: Mon, 1 Jun 2026 21:33:19 +0200
+Subject: [PATCH] Find libsodium using pkgconfig
+
+---
+ fizz/cmake/fizz-config.cmake.in | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/fizz/cmake/fizz-config.cmake.in b/fizz/cmake/fizz-config.cmake.in
+index 07b4d01f..cfbacf2d 100644
+--- a/fizz/cmake/fizz-config.cmake.in
++++ b/fizz/cmake/fizz-config.cmake.in
+@@ -32,7 +32,8 @@ set(FIZZ_LIBRARIES fizz::fizz)
+ 
+ include(CMakeFindDependencyMacro)
+ 
+-find_dependency(Sodium)
++find_package(PkgConfig QUIET)
++pkg_check_modules(Sodium)
+ find_dependency(folly CONFIG)
+ find_dependency(ZLIB)
+ if(FIZZ_HAVE_OQS)
+-- 
+2.54.0
+

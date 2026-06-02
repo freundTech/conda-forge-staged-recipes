@@ -1,0 +1,67 @@
+context:
+  version: "2026.06.01.00"
+
+package:
+  name: watchman
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebook/watchman/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 678ad731bd5102f5090fab2cd8abdadeb5d9b18a2e580f7dba03d40f501978c2
+
+build:
+  number: 0
+  skip:
+    - win
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}  # If you need any compiler, add the C standard library ("stdlib") too
+    - ${{ compiler('rust') }}
+    - python >=3.14
+    - setuptools
+    - cmake
+    - ninja
+  host:
+    - cpptoml
+    - gflags
+    - gtest
+    - libevent
+    - mvfst
+    - openssl
+    - pkgconfig
+    - setuptools
+    - edencommon
+    - fb303
+    - fbthrift
+    - fmt
+    - folly
+    - glog
+    - pcre2
+    - python >=3.14
+    - liblzma-devel
+  run:
+    - edencommon
+    - fb303
+    - fbthrift
+    - fmt
+    - folly
+    - glog
+    - pcre2
+    - python >=3.14
+
+
+about:
+  homepage: https://facebook.github.io/watchman/
+  summary: 'Watches files and records, or triggers actions, when they change. '
+  description: |
+    Watchman exists to watch files and record when they actually change. It can also trigger actions (such as rebuilding assets) when matching files change.
+  license: MIT
+  license_file: LICENSE
+  documentation: https://facebook.github.io/watchman/
+  repository: https://github.com/facebook/watchman
+
+extra:
+  recipe-maintainers:
+    - freundTech
